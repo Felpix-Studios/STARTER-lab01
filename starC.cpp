@@ -15,7 +15,20 @@ void runTests(void);
 string starC(int width, int height)
 {
   string result = "";
-  result = "stub"; // TODO: remove this line, replace with correct code
+  if(width>=2 && height>=3){
+    for(int i = 0;i<height;i++){
+      if(i==0 || i==(height-1)){
+        for(int j =0;j<width;j++){
+          result +="*";
+        }
+      }else{
+        result+="*";
+      }
+      result+="\n";
+    }
+  }else{
+    result = "";
+  }
   return result;
 }
 
@@ -79,15 +92,24 @@ int main(int argc, char *argv[])
 
   // TODO: Add check for parameters
   // and code to print usage message
-
+  if (argc != 3)
+  {
+    cerr << "Usage: " << argv[0] << " width height" << endl;
+    exit(1);
+  }
   // TODO: Add code to get width and height from cmd line args
+  int width = stoi(argv[1]);
+  int height = stoi(argv[2]);
   // code that checks if they are both -1; if so, call runTests()
   // then exit.
-
-  runTests();
+  if (width == -1 && height == -1)
+  {
+    runTests();
+    exit(0);
+  }
 
   // TODO: Add code that calls the starC function and prints
   // the result on cout (without an extra newline)
-
+  cout << starC(width,height);
   return 0;
 }
